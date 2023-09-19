@@ -1,0 +1,33 @@
+create database estacionamento;
+
+create table veiculo(idveiculo int primary key auto_increment, fabricante varchar(50) not null, modelo varchar(80) not null, placa char(7) not null unique);
+
+alter table veiculo rename to carro;
+
+alter table carro add cor varchar(15) not null after modelo;
+
+alter table carro modify cor char(8) not null;
+
+alter table carro change modelo nome_modelo varchar(50) not null;
+
+alter table carro drop cor;
+
+insert into carro values (1001, 'Fiat', 'Fiat 500', 'bra2e19');
+
+insert into carro values (null, 'Chevrolet', 'Onix Plus Premier', 'brb2a18');
+
+insert into carro values (null, 'ford', 'Fusion', 'brc3b40');
+
+insert into carro values (null, 'Hyndai', 'Tucson', 'abr6n80');
+
+insert into carro values (null, 'Toyota', 'Yaris', 'abc1241');
+
+insert into carro values (null, 'Toyota', 'Hilux', 'abc1251');
+
+update carro set nome_modelo = 'Fusion Titanium' where idveiculo = 1003;
+
+update carro set fabricante = 'Ford do Brasil' where idveiculo = 1003;
+
+update carro set nome_modelo = 'Bronco', placa = 'abc3n20' where idveiculo = 1003;
+
+delete from carro where idveiculo = 1001;
