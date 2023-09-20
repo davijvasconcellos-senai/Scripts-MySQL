@@ -1,5 +1,3 @@
-BANCO DE DADOS ESCOLA:
-
 create database escola;
 
 create table Aluno(matricula int primary key auto_increment, nome varchar(80) not null, nascimento date, cpf char(14) not null unique, responsavel varchar(80) not null, email varchar(80) unique);
@@ -28,6 +26,8 @@ alter table leciona add constraint fkdis2 foreign key (fk_disciplina_cod_discipl
 
 alter table leciona add constraint fkpro foreign key (fk_professor_matricula) references professor (matricula);
 
+alter table professor add email varchar(80) not null after nome;
+
 insert into aluno values(3001, 'Godofredo Henrique', '2000-03-15','123.456.789-01', 'Godojane Maia', 'gh@email.com');
 
 insert into aluno values(null, 'Josefina Winter', '1945-02-10', '123.456.789-02', 'Clenisbaldo Winter', null);
@@ -40,9 +40,13 @@ insert into aluno (nome,cpf,responsavel) values ('Waldiney Mouse', '123.456.789-
 
 insert into aluno (cpf,matricula,nome,responsavel,email) values ('123.456.789-07', null, 'Genivaldo Williams', 'Clotilde Williams', 'gw@email.com');
 
+insert into aluno values(null, 'Judite Presley', '2001-09-11', '123.456.789-08', 'Elvis Presley', 'jp@email.com');
+
 insert into turma values(2023080, 'm', 'Técnico de Informática');
 
 insert into turma values(2023090, 't', 'Técnico em Comunicação Visual');
+
+insert into turma values(20223100, 'm', 'Técnico em Comunicação Visual');
 
 insert into estuda values (7501, 3001, 2023090);
 
@@ -58,11 +62,15 @@ insert into estuda values (null, 3006, 2023090);
 
 insert into estuda values (null, 3007, 2023080);
 
+insert into estuda values(null, 3008, 20223100);
+
 insert into disciplina values (null,'Redes');
 
 insert into disciplina values (1001,'Programação');
 
 insert into disciplina values (null, 'Tratamento de Imagem');
+
+insert into disciplina values (null, 'Lógica de Programação');
 
 insert into professor values(400, 'Ségio', 'Tecnologia da Informação');
 
@@ -70,14 +78,38 @@ insert into professor values(null, 'Vicente', 'Tecnologia da Informação');
 
 insert into professor values(null, 'Flávia', 'Comunicação Visual');
 
+insert into professor values (null, 'Jefferson Brandão', 'Tecnologia da Informação');
+
 insert into possui values(30, 1001, 2023080);
 
 insert into possui values(null,1002, 2023080);
 
 insert into possui values(40, 1003, 2023090);
 
+insert into possui values (32, 1004, 2023080);
+
+insert into possui values(41, 1003, 20223100);
+
 insert into leciona values(10, 1001, 400);
 
 insert into leciona values(null, 1002, 400);
 
 insert into leciona values(null, 1003, 402);
+
+insert into leciona values (null, 1004, 403);
+
+update professor set nome='Vicente Orsino' where matricula = 401;
+
+update aluno set nascimento ='2000-03-25' where matricula = 3006;
+
+update aluno set nascimento = '2000-03-25' where matricula = 3007;
+
+update disciplina set nome='Programação Python' where cod_disciplina = 1001;
+
+update professor set email = 'sg@email.com' where matricula = 400;
+
+update professor set email = 'vco@email.com' where matricula = 401;
+
+update professor set email = 'flv@email.com' where matricula = 402;
+
+update professor set email = 'jfb@email.com' where matricula = 403;
